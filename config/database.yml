@@ -24,15 +24,15 @@ default: &default
 development:
   <<: *default
   database: adventistMusic_development
-
+  host: localhost
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: adventistMusic
+  username: postgres
 
   # The password associated with the postgres role (username).
-  #password:
+  password: 12345
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -58,6 +58,13 @@ development:
 test:
   <<: *default
   database: adventistMusic_test
+  host: localhost
+
+  # the same name as the operating system user that initialized the database.
+  username: postgres
+
+  # The password associated with the postgres role (username).
+  password: 12345
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,5 +88,5 @@ test:
 production:
   <<: *default
   database: adventistMusic_production
-  username: adventistMusic
+  username: adventMusic
   password: <%= ENV['ADVENTISTMUSIC_DATABASE_PASSWORD'] %>
