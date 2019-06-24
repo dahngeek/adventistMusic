@@ -69,6 +69,6 @@ class SongsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def song_params
-      params.require(:song).permit(:name, :duration, :type_id, :youtube_url, {:artist_ids => []})
+      params.require(:song).permit(:name, :duration, :type_id, :youtube_url, {:artist_ids => []}, {:category_ids => []})
     end
 end

@@ -37,6 +37,40 @@
     </div>
   </div>
 
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label for="photo">Imagen:</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <% 
+            if category.image.attached?
+            %>
+            <div class="categoryImage" style="background-image: url(<%= url_for(category.image) %>);"></div>
+            <% 
+            end
+            %>
+            <div class="field">
+              <div class="file is-info has-name">
+                <label class="file-label">
+                  <%= form.file_field :image, multiple: false, direct_upload: true %>
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Imagen...
+                    </span>
+                  </span>
+                </label>
+              </div>
+            </div>
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="buttons has-addons is-right">
     <%= form.submit 'Guardar', :class=>"button is-primary is-right is-large" %>
   </div>
