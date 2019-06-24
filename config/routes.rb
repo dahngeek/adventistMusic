@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   scope '/admin' do
     resources :albums
     resources :songs

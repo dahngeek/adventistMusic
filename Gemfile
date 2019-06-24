@@ -7,6 +7,10 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
+#para los usuarios y admin
+gem 'devise'
+# Para los correos y leerlos
+gem "letter_opener", :group => :development
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
