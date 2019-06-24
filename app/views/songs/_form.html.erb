@@ -52,6 +52,7 @@
       </div>
     </div>
 
+
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <%= form.label :youtube_url, :class=>"label" %>
@@ -59,6 +60,9 @@
       <div class="field-body">
         <div class="field">
           <p class="control">
+              <% if !song.youtube_url.nil? %>
+                <img src="<%= song.image %>" width="250" alt="">
+              <% end %>
               <%= form.text_field :youtube_url, :class=>"input is-primary" %>
           </p>
         </div>

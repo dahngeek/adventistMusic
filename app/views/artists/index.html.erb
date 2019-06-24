@@ -4,6 +4,7 @@
 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
   <thead>
     <tr>
+      <th>Foto</th>
       <th>Name</th>
       <th>Biography</th>
       <th colspan="3"></th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @artists.each do |artist| %>
       <tr>
+        <td><%= image_tag artist.photo %></td>
         <td><%= artist.name %></td>
         <td><%= artist.biography %></td>
         <td><%= link_to 'Show', artist %></td>

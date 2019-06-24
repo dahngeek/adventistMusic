@@ -10,4 +10,13 @@ class Song < ApplicationRecord
   def describe
     self.name + " - " + self.artists.map(&:name).join(", ")
   end
+
+  def get_youtubeid
+    self.youtube_url.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/user\/\S+|\/ytscreeningroom\?v=|\/sandalsResorts#\w\/\w\/.*\/))([^\/&]{10,12})/)[1]
+  end
+
+  def image
+    id = self.get_youtubeid()
+    'https://img.youtube.com/vi/'+ id +'/hqdefault.jpg'
+  end
 end
