@@ -11,25 +11,77 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :duration %>
-    <%= form.text_field :duration %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_id %>
-    <%= collection_select(:song, :type_id, Type.all, :id, :name) %>
-  </div>
-
-  <div class="field">
-      <%= form.label :youtube_url %>
-      <%= form.text_field :youtube_url %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= form.label :name, :class=>"label" %>
     </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <%= form.text_field :name, :class=>"input is-large" %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <%= form.label :duration, :class=>"label" %>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+              <%= form.text_field :duration, :class=>"input" %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <%= form.label :type_id, :class=>"label" %>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+              <div class="select">
+                <%= collection_select(:song, :type_id, Type.all, :id, :name) %>
+              </div>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <%= form.label :youtube_url, :class=>"label" %>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+              <%= form.text_field :youtube_url, :class=>"input is-primary" %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <%= form.label 'Artistas', :class=>"label" %>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+                <div class="select is-multiple">
+                    <%= collection_check_boxes(:song, :artist_ids, Artist.all, :id, :name) do |b|
+                        b.label(:"data-value" => b.value,:class=>"checkbox") {b.check_box + b.text}  
+                    end
+                    %>
+                </div>
+            </p>
+          </div>
+        </div>
+      </div>
 
   <div class="actions">
     <%= form.submit %>
