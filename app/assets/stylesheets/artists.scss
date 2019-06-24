@@ -48,3 +48,11 @@
     border: 20px solid #ccc;
     margin-bottom: 10px;
 }
+.songElement .icon{
+    display: none;
+    color: #fff;
+}
+
+.songElement:hover .icon{
+    display: block;
+}

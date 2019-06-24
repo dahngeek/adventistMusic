@@ -1,0 +1,142 @@
+<div class="section">
+    <div class="container">
+            <div class="columns">
+                <div class="column">
+                        <div id="videoembed1" class="embed-container">
+                            <iframe style="height: 400px;width: 680px;" width="640" height="390" frameborder="0" title="YouTube video player" type="text/html" src="http://www.youtube.com/embed/<%= @songs[0].get_youtubeid %>?feature=oembed&controls=0&hd=1&modestbranding=1&autohide=1&showinfo=0&enablejsapi=1&autoplay=1"></iframe>
+                        </div>
+                </div>
+                <div class="column">
+                        <h3 class="subtitle is-3">Canciones</h3>
+                        <table class="table is-striped is-hoverable is-fullwidth">
+                            <tbody>
+                            <% @songs.each_with_index do |song, index|%>
+                            <%if index === 0 %>
+                                <tr class="songElement is-selected" data-videoid="<%= song.get_youtubeid %>" onclick="playSong(event, '<%= song.get_youtubeid %>')">
+                            <% else %>
+                                <tr class="songElement" data-videoid="<%= song.get_youtubeid %>" onclick="playSong(event, '<%= song.get_youtubeid %>')">
+                            <% end %>
+                                <td style="position:relative;">
+                                    <img src="<%= song.image %>" width="50" alt="">
+                                    <span class="icon" style="position:absolute;top: 15px;left: 30px;">
+                                        <i class="fas fa-play"></i>
+                                    </span>
+                                </td>
+                                <td><%= song.name %></td>
+                                <td><%= song.artists_list() %></td>
+                            </tr>
+                            <% end%>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="navbar is-fixed-bottom">
+        <progress class="progress is-danger is-small" max="100">30%</progress>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                    <span onclick="previousSong()" class="icon is-large">
+                        <i class="fas fa-step-backward"></i>
+                    </span>
+                    <span onclick="togglePlayer()" id="mainControl" class="icon is-large">
+                        <i id="mainControlIcon" class="fas fa-pause"></i>
+                    </span>
+                    <span onclick="nextSong()" class="icon is-large">
+                        <i class="fas fa-step-forward"></i>
+                    </span>
+            </div>
+        
+            <div class="navbar-end">
+                    <span class="icon is-large">
+                        <i class="fas fa-volume-up"></i>
+                    </span>
+            </div>
+        </div>
+</div>
+<script type='text/javascript' src="https://www.youtube.com/iframe_api"></script>
+<script>
+        var status = 1; //playing
+
+        function togglePlayer(){
+            var control = document.querySelector("#mainControlIcon");
+            if (status == 1){
+                callPlayer("videoembed1","pauseVideo")
+                control.classList.remove('fa-pause');
+                control.classList.add('fa-play');
+                status = 0;
+            } else {
+                callPlayer("videoembed1","playVideo")
+                control.classList.remove('fa-play');
+                control.classList.add('fa-pause');
+                status = 1;
+            }
+        }
+
+        function nextSong(){
+            var control = document.querySelector("#mainControlIcon");
+            var current = document.querySelector(".is-selected");
+            var elementos = Array.from(document.querySelectorAll('.songElement'));
+            var indice = elementos.indexOf(current);
+            if (indice < elementos.length-1){
+                var activos = Array.from(document.querySelectorAll('.is-selected'));
+                activos.forEach(node => {
+                    node.classList.remove('is-selected');
+                });
+                var elementoSiguiente =elementos[indice+1];
+                elementoSiguiente.classList.add('is-selected');
+                callPlayer("videoembed1","loadVideoById",[elementoSiguiente.dataset.videoid])
+                if(status==0){
+                    control.classList.remove('fa-play');
+                    control.classList.add('fa-pause');
+                }
+            }
+        }
+
+        function previousSong(){
+            var control = document.querySelector("#mainControlIcon");
+            var current = document.querySelector(".is-selected");
+            var elementos = Array.from(document.querySelectorAll('.songElement'));
+            var indice = elementos.indexOf(current);
+            if (indice > 0){
+                var activos = Array.from(document.querySelectorAll('.is-selected'));
+                activos.forEach(node => {
+                    node.classList.remove('is-selected');
+                });
+                var elementoSiguiente =elementos[indice-1];
+                elementoSiguiente.classList.add('is-selected');
+                callPlayer("videoembed1","loadVideoById",[elementoSiguiente.dataset.videoid])
+                if(status==0){
+                    control.classList.remove('fa-play');
+                    control.classList.add('fa-pause');
+                }
+            }
+        }
+
+        function playSong(evento, id){
+            console.log("play");
+            var activos = Array.from(document.querySelectorAll('.is-selected'));
+            activos.forEach(node => {
+                node.classList.remove('is-selected');
+            });
+            var domElement =event.target.parentNode;
+            domElement.classList.add('is-selected');
+            callPlayer("videoembed1","loadVideoById",[id])
+        }
+        function callPlayer(frame_id, func, args) {
+            if (window.jQuery && frame_id instanceof jQuery) frame_id = frame_id.get(0).id;
+            var iframe = document.getElementById(frame_id);
+            if (iframe && iframe.tagName.toUpperCase() != 'IFRAME') {
+              iframe = iframe.getElementsByTagName('iframe')[0];
+            }
+            if (iframe) {
+              // Frame exists,
+              iframe.contentWindow.postMessage(JSON.stringify({
+                "event": "command",
+                "func": func,
+                "args": args || [],
+                "id": frame_id
+              }), "*");
+            }
+          }
+</script>

@@ -9,17 +9,17 @@ end
   
     <div id="artistHeader" class="hero-body">
       <div class="container">
-        <div class="grid">
-          <div class="column">
-
-          </div>
           <div class="column">
               <h1 class="title">
                   <%= @artist.name %>
                 </h1>
+                <a href="./<%= @artist.id %>/play" class="button is-danger is-outlined">
+                    <span>Escuchar</span>
+                    <span class="icon is-small">
+                        <i class="fas fa-play"></i>
+                      </span>
+                </a>
           </div>
-        </div>
-      </div>
     </div>
 </section>
 

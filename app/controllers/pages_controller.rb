@@ -14,4 +14,17 @@ class PagesController < ApplicationController
     def artist_list
         @artists = Artist.all
     end
+
+    def play
+        if params[:type] == 'artist'
+            @artist = Artist.find(params[:id])
+            @songs = @artist.songs
+        end
+    end
+
+    def search
+        @artists = Artist.where('name like ?', '%' + params[:term] + '%' )
+        @albums = Albums.where('title like ?', '%' + params[:term] + '%' )
+        @songs = Songs.where('title like ?', '%' + params[:term] + '%' )
+    end
 end
