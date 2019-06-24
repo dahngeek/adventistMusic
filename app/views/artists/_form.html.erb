@@ -1,6 +1,6 @@
 <%= form_with(model: artist, local: true) do |form| %>
   <% if artist.errors.any? %>
-    <div id="error_explanation">
+  <div class="notification is-danger">
       <h2><%= pluralize(artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
 
       <ul>
@@ -11,17 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= form.label :name, :class=>"label" %>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <%= form.text_field :name, :class=>"input is-large" %>
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :biography %>
-    <%= form.text_area :biography %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= form.label :biography, :class=>"label" %>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <%= form.text_area :biography, :class=>"textarea is-info is-medium" %>
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="buttons has-addons is-right">
+    <%= form.submit 'Guardar', :class=>"button is-primary is-right is-large" %>
   </div>
 <% end %>

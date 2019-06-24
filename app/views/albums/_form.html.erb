@@ -1,6 +1,6 @@
 <%= form_with(model: album, local: true) do |form| %>
   <% if album.errors.any? %>
-    <div id="error_explanation">
+    <div class="notification is-danger">
       <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>
 
       <ul>
@@ -11,22 +11,46 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= form.label :title, :class=>"label" %>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <%= form.text_field :title, :class=>"input is-large" %>
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :year %>
-    <%= form.number_field :year %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= form.label :year, :class=>"label" %>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <%= form.number_field :year, :class=>"input is-medium" %>
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+  <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <%= form.label :description, :class=>"label" %>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+              <%= form.text_area :description, :class=>"textarea is-info is-medium" %>
+          </p>
+        </div>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="buttons has-addons is-right">
+      <%= form.submit 'Guardar', :class=>"button is-primary is-right is-large" %>
+    </div>
 <% end %>

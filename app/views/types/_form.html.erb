@@ -1,6 +1,6 @@
 <%= form_with(model: type, local: true) do |form| %>
   <% if type.errors.any? %>
-    <div id="error_explanation">
+    <div class="notification is-danger">
       <h2><%= pluralize(type.errors.count, "error") %> prohibited this type from being saved:</h2>
 
       <ul>
@@ -11,22 +11,46 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= form.label :name, :class=>"label" %>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <%= form.text_field :name, :class=>"input is-large" %>
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= form.label :description, :class=>"label" %>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <%= form.text_area :description, :class=>"textarea is-info is-medium" %>
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :icon %>
-    <%= form.text_field :icon %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= form.label :icon, :class=>"label" %>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <%= form.text_field :icon, :class=>"input" %>
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="buttons has-addons is-right">
+    <%= form.submit 'Guardar', :class=>"button is-primary is-right is-large" %>
   </div>
 <% end %>

@@ -1,6 +1,6 @@
 <%= form_with(model: category, local: true) do |form| %>
   <% if category.errors.any? %>
-    <div id="error_explanation">
+  <div class="notification is-danger">
       <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
 
       <ul>
@@ -11,17 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= form.label :name, :class=>"label" %>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <%= form.text_field :name, :class=>"input is-large" %>
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= form.label :description, :class=>"label" %>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <%= form.text_area :description, :class=>"textarea is-info is-medium" %>
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="buttons has-addons is-right">
+    <%= form.submit 'Guardar', :class=>"button is-primary is-right is-large" %>
   </div>
 <% end %>
