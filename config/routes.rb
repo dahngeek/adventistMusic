@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins
+  get 'admin', to: 'albums#index'
   scope '/admin' do
     resources :albums
     resources :songs
