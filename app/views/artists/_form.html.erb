@@ -37,6 +37,74 @@
     </div>
   </div>
 
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label for="photo">Foto de perfil:</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+            <% 
+            if artist.photo.attached?
+            %>
+            <div class="profilePicture" style="background-image: url(<%= url_for(artist.photo) %>);"></div>
+            <% 
+            end
+            %>
+            <div class="field">
+              <div class="file is-info has-name">
+                <label class="file-label">
+                  <%= form.file_field :photo, multiple: false, direct_upload: true %>
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Imagen de Perfil…
+                    </span>
+                  </span>
+                </label>
+              </div>
+            </div>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="photo">Foto de encabezado:</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+              <% 
+              if artist.cover.attached?
+              %>
+              <div class="coverPicture" style="background-image: url(<%= url_for(artist.cover) %>);"></div>
+              <% 
+              end
+              %>
+              <div class="field">
+                <div class="file is-info has-name">
+                  <label class="file-label">
+                    <%= form.file_field :cover, multiple: false, direct_upload: true %>
+                    <span class="file-cta">
+                      <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                      </span>
+                      <span class="file-label">
+                        Imagen de Encabezado...
+                      </span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+          </p>
+        </div>
+      </div>
+    </div>
+
   <div class="buttons has-addons is-right">
     <%= form.submit 'Guardar', :class=>"button is-primary is-right is-large" %>
   </div>
