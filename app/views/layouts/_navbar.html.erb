@@ -47,14 +47,22 @@
         <div class="navbar-end">
         <div class="navbar-item">
                 <div id="searchBox" class="field has-addons">
-                    <div class="control">
-                        <input class="input" type="text" placeholder="Find a repository">
-                    </div>
-                    <div class="control">
-                        <a class="button is-info">
-                        Search
-                        </a>
-                    </div>
+                    <form action="/buscar/">
+                        <div class="columns is-gapless">
+                            <div class="column">
+                                    <div class="control">
+                                            <input class="input" type="text" placeholder="buscar" name="term">
+                                    </div>
+                            </div>
+                            <div class="column">
+                                    <div class="control">
+                                            <button type="submit" class="button is-info">
+                                            Search
+                                            </button>
+                                        </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
         </div>
         <% if admin_signed_in? %>
