@@ -23,8 +23,13 @@
 
   <div class="field">
     <%= form.label :type_id %>
-    <%= form.text_field :type_id %>
+    <%= collection_select(:song, :type_id, Type.all, :id, :name) %>
   </div>
+
+  <div class="field">
+      <%= form.label :youtube_url %>
+      <%= form.text_field :youtube_url %>
+    </div>
 
   <div class="actions">
     <%= form.submit %>

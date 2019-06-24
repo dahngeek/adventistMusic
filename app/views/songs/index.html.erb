@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Songs</h1>
-
-<table>
+<h1 class="title is-1">Canciones</h1>
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
   <thead>
     <tr>
       <th>Name</th>
@@ -17,7 +16,7 @@
       <tr>
         <td><%= song.name %></td>
         <td><%= song.duration %></td>
-        <td><%= song.type %></td>
+        <td><%= song.type.name %></td>
         <td><%= link_to 'Show', song %></td>
         <td><%= link_to 'Edit', edit_song_path(song) %></td>
         <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>

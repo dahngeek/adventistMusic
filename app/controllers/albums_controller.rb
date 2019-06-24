@@ -1,4 +1,4 @@
-class AlbumsController < ApplicationController
+class AlbumsController < AdminController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
 
   # GET /albums
