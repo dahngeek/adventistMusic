@@ -29,10 +29,10 @@
 .artistcard {
     text-align: center
 }
-.artistcard a, .artistcard a:hover  {
+.artistcard a, .artistcard a:hover, .songElement a, .songElement a:hover, .songElement a:visited, a.button:hover {
     background: none;
     color:none;
-    cursor: default;
+    cursor: pointer;
     text-decoration: none;
     margin: none;
     width: none;

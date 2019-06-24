@@ -1,0 +1,62 @@
+<div class="section">
+    <div class="container">
+    
+            <h1 class="title">Buscando "<%= @term %>"</h1>
+            <h3 class="subtitle is-3">Artistas</h3>
+            <div class="columns">
+                <% @artists.each do |artist|%>
+                        <div class="column is-one-quarter artistcard">
+                            <a href="/artista/<%= artist.id %>">
+                            <% 
+                            if artist.photo.attached?
+                            %>
+                            <div class="profilePicture" style="background-image: url(<%= url_for(artist.photo) %>);"></div>
+                            <% 
+                            end
+                            %>
+                            <h1 class="title is-5"><%= artist.name %></h1>
+                            </a>
+                        </div>
+                <% end %>
+            </div>
+    </div>
+</div>
+<div class="section">
+        <div class="container">
+            <h3 class="subtitle is-3">Albumes</h3>
+              <div class="columns">
+                <% @albums.each do |album|%>
+                <div class="card column is-one-quarter">
+                        <div class="card-image">
+                                <a href="/album/<%= album.id %>">
+                                <%if album.image.attached? %>
+                                  <figure class="image is-4by3" style="background-image: url(<%= url_for(album.image) %>); background-size: cover; background-position: center center;"></figure>
+                                <% else %>
+                                  <figure class="image is-4by3" style="background-image: url(<%= album.get_image() %>); background-size: cover; background-position: center center;"></figure>
+                                <%end%>
+                                </a>
+                          </div>
+                          <div class="card-content">
+                            <div class="media">
+                              <div class="media-left">
+                                <figure class="image is-48x48">
+                                  <img src="<%= url_for(album.artists[0].photo) %>" alt="Artista">
+                                </figure>
+                              </div>
+                              <div class="media-content">
+                                <a href="/album/<%= album.id %>">
+                                  <p class="title is-4"><%= album.title %></p>
+                                  <p class="subtitle is-6"><%= album.year %></p>
+                                </a>
+                              </div>
+                            </div>
+                  
+                      <div class="content">
+                          <%= album.description %>
+                      </div>
+                    </div>
+                  </div>
+                <% end%>
+              </div>
+        </div>
+      </div>

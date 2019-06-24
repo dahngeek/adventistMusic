@@ -54,10 +54,21 @@ end
       <table class="table is-striped is-hoverable is-fullwidth">
         <tbody>
           <% @artist.songs.each do |song|%>
-          <tr>
-              <td><img src="<%= song.image %>" width="50" alt=""></td>
-              <td><%= song.name %></td>
-              <td><%= song.artists_list() %></td>
+          <tr class="songElement">
+                  <td style="position:relative;">
+                    <a href="/cancion/<%= song.id %>/play">
+                        <img src="<%= song.image %>" width="50" alt="">
+                      <span class="icon" style="position:absolute;top: 15px;left: 30px;">
+                          <i class="fas fa-play"></i>
+                      </span>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="/cancion/<%= song.id %>/play">
+                      <%= song.name %>
+                    </a>
+                  </td>
+                  <td><%= song.artists_list() %></td>
           </tr>
           <% end%>
         </tbody>
@@ -66,18 +77,19 @@ end
 </div>
 <div class="section">
     <div class="container">
+      <% if @artist.albums.any? %>
         <h3 class="subtitle is-3">Albumes</h3>
           <div class="columns">
             <% @artist.albums.each do |album|%>
             <div class="card column is-one-quarter">
                 <div class="card-image">
-                  
+                      <a href="/album/<%= album.id %>">
                       <%if album.image.attached? %>
-                        <figure class="image is-4by3" style="background-image: url(<%= url_for(album.image) %>); background-size: cover; background-position: center center;">
+                        <figure class="image is-4by3" style="background-image: url(<%= url_for(album.image) %>); background-size: cover; background-position: center center;"></figure>
                       <% else %>
                         <figure class="image is-4by3" style="background-image: url(<%= album.get_image() %>); background-size: cover; background-position: center center;"></figure>
                       <%end%>
-                  </figure>
+                      </a>
                 </div>
                 <div class="card-content">
                   <div class="media">
@@ -87,8 +99,10 @@ end
                       </figure>
                     </div>
                     <div class="media-content">
-                      <p class="title is-4"><%= album.title %></p>
-                      <p class="subtitle is-6"><%= album.year %></p>
+                      <a href="/album/<%= album.id %>">
+                        <p class="title is-4"><%= album.title %></p>
+                        <p class="subtitle is-6"><%= album.year %></p>
+                      </a>
                     </div>
                   </div>
               
@@ -99,5 +113,6 @@ end
               </div>
             <% end%>
           </div>
+      <%end%>
     </div>
   </div>

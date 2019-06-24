@@ -1,0 +1,57 @@
+<section class="hero is-medium is-primary is-bold">
+<div class="hero-body">
+    <div class="container">
+    <div class="columns">
+        <div class="column is-2">
+                <%if @album.image.attached? %>
+                <%= image_tag @album.image %>
+                <% else %>
+                <img width="220" src="<%= @album.get_image() %>" alt="">
+                <%end%>
+        </div>
+        <div class="column">
+                <h1 class="title">
+                    <%= @album.title %>
+                </h1>
+                <h2 class="subtitle">
+                    <%= @album.year %> - 
+                    <% @album.artists.each do |artista|%>
+                    <a href="/artista/<%=artista.id%>"><%=artista.name%></a>
+                    <% end%>
+                </h2>
+                <a href="./<%= @album.id %>/play" class="button is-active">
+                    <span>Escuchar</span>
+                    <span class="icon is-small">
+                        <i class="fas fa-play"></i>
+                      </span>
+                </a>
+        </div>
+    </div>
+
+    <h3 class="subtitle is-3">Canciones</h3>
+      <table class="table is-striped is-hoverable is-fullwidth">
+        <tbody>
+          <% @album.songs.each do |song|%>
+          <tr class="songElement">
+                  <td style="position:relative;">
+                    <a href="/cancion/<%= song.id %>/play">
+                        <img src="<%= song.image %>" width="50" alt="">
+                      <span class="icon" style="position:absolute;top: 15px;left: 30px;">
+                          <i class="fas fa-play"></i>
+                      </span>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="/cancion/<%= song.id %>/play">
+                      <%= song.name %>
+                    </a>
+                  </td>
+                  <td><%= song.artists_list() %></td>
+          </tr>
+          <% end%>
+        </tbody>
+      </table>
+
+    </div>
+</div>
+</section>
