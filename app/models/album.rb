@@ -3,4 +3,6 @@ class Album < ApplicationRecord
 
     validates :title, :year, :description, :presence => true
     validates :year, :numericality => { :only_integer => true }
+
+    has_one_attached :image
 end
