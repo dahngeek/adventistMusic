@@ -15,11 +15,7 @@
 
   <body>
     <%= render partial: '/layouts/navbar.html.erb' %>
-    <section class="section">
-        <div class="container">
-            <%= yield %>
-        </div>
-      </section>
-      <%= render partial: '/layouts/footer.html.erb' %>
+    <%= yield %>
+    <%= render partial: '/layouts/footer.html.erb' %>
   </body>
 </html>

@@ -1,0 +1,29 @@
+<div class="section">
+    <div class="container">
+        <h1 class="title">Artistas Destacados</h1>
+        <div class="columns">
+            <% @artists.each do |artist|%>
+                    <div class="column is-one-quarter artistcard">
+                        <a href="/artista/<%= artist.id %>">
+                        <% 
+                        if artist.photo.attached?
+                        %>
+                        <div class="profilePicture" style="background-image: url(<%= url_for(artist.photo) %>);"></div>
+                        <% 
+                        end
+                        %>
+                        <h1 class="title is-5"><%= artist.name %></h1>
+                        </a>
+                    </div>
+            <% end %>
+        </div>
+        <div class="buttons has-addons is-right">
+            <a class="button is-primary">
+                <span class="icon">
+                    <i class="fa fa-angle-right"></i>
+                </span>
+                <span>Ver todos</span>
+            </a>
+        </div>
+    </div>
+</div>

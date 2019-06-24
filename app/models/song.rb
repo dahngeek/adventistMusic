@@ -11,6 +11,10 @@ class Song < ApplicationRecord
     self.name + " - " + self.artists.map(&:name).join(", ")
   end
 
+  def artists_list
+    self.artists.map(&:name).join(", ")
+  end
+
   def get_youtubeid
     self.youtube_url.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/user\/\S+|\/ytscreeningroom\?v=|\/sandalsResorts#\w\/\w\/.*\/))([^\/&]{10,12})/)[1]
   end

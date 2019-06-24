@@ -19,3 +19,32 @@
     border-radius: 30px;
     border: 1px solid #000;
 }
+
+#artistHeader{
+    background: rgba(0,0,0,0.4);
+}
+#artistHeader h1{
+    color: #fff;
+}
+.artistcard {
+    text-align: center
+}
+.artistcard a, .artistcard a:hover  {
+    background: none;
+    color:none;
+    cursor: default;
+    text-decoration: none;
+    margin: none;
+    width: none;
+}
+.artistcard .profilePicture {
+    margin: 0 auto;
+    border: none;
+    margin-bottom: 10px;
+    transition: 0.2s linear all;
+}
+.artistcard:hover .profilePicture {
+    margin: 0 auto;
+    border: 20px solid #ccc;
+    margin-bottom: 10px;
+}
