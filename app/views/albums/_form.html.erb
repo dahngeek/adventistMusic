@@ -108,6 +108,30 @@
         </div>
       </div>
 
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <%= form.label 'Canciones', :class=>"label" %>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+              <ul style="list-style: none; max-height: 100px;overflow-y:scroll;">
+                  <%= collection_check_boxes(:album, :song_ids, Song.all, :id, :describe) do |b|
+                  %>
+                  <li>    
+                  <%=
+                      b.label(:"data-value" => b.value,:class=>"checkbox") {b.check_box + b.text}  
+                      %>
+                    </li>
+                    <%
+                    end
+                    %>
+              </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+
     <div class="buttons has-addons is-right">
       <%= form.submit 'Guardar', :class=>"button is-primary is-right is-large" %>
     </div>
