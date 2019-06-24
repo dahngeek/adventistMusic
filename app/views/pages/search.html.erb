@@ -28,7 +28,7 @@
                 <% @albums.each do |album|%>
                 <div class="card column is-one-quarter">
                         <div class="card-image">
-                                <a href="/album/<%= album.id %>">
+                                <a href="/valbum/<%= album.id %>">
                                 <%if album.image.attached? %>
                                   <figure class="image is-4by3" style="background-image: url(<%= url_for(album.image) %>); background-size: cover; background-position: center center;"></figure>
                                 <% else %>
@@ -44,7 +44,7 @@
                                 </figure>
                               </div>
                               <div class="media-content">
-                                <a href="/album/<%= album.id %>">
+                                <a href="/valbum/<%= album.id %>">
                                   <p class="title is-4"><%= album.title %></p>
                                   <p class="subtitle is-6"><%= album.year %></p>
                                 </a>

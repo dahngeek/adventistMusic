@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   devise_for :admins
   root :to => "pages#index"
   get '/artista/:id', to: 'pages#artist', as: 'artist'
-  get '/album/:id', to: 'pages#album', as: 'album'
-  get '/albums', to: 'pages#albums_list'
+  get '/valbum/:id', to: 'pages#album', as: 'album'
+  get '/albumes', to: 'pages#albums_list'
   get '/buscar/', to: 'pages#search', :defaults => { :term => '' }
   get '/cancion/:id/play' => 'pages#play', :defaults => { :type => 'song' }
-  get '/album/:id/play' => 'pages#play', :defaults => { :type => 'album' }
+  get '/valbum/:id/play' => 'pages#play', :defaults => { :type => 'album' }
   get '/artista/:id/play' => 'pages#play', :defaults => { :type => 'artist' }
   get '/artistas', to: 'pages#artist_list'
 

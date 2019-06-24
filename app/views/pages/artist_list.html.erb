@@ -2,7 +2,7 @@
     <div class="container">
         <div class="columns">
             <% @artists.each do |artist|%>
-                    <div class="column is-one-quarter artistcard">
+                    <div class="is-block artistcard" style="float:left; width: 400px">
                         <a href="/artista/<%= artist.id %>">
                         <% 
                         if artist.photo.attached?

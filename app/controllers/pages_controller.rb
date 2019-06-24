@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     # GET /albums.json
     def index
         @artists = Artist.limit(4)
+        @albums = Album.limit(4)
     end
 
     def artist
@@ -17,6 +18,10 @@ class PagesController < ApplicationController
 
     def artist_list
         @artists = Artist.all
+    end
+
+    def albums_list
+        @albums = Album.all
     end
 
     def play

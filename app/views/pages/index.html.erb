@@ -1,3 +1,15 @@
+<section class="hero is-medium is-dark is-bold" style="background-image: url('image-hero.jpg'); background-size:cover; background-position:center center;">
+        <div id="mainHero" class="hero-body">
+          <div class="container">
+            <p class="title">
+              Musica para tus oidos
+            </p>
+            <p class="subtitle">
+              Encuentra toda la mejor selección
+            </p>
+          </div>
+        </div>
+      </section>
 <div class="section">
     <div class="container">
         <h1 class="title">Artistas Destacados</h1>
@@ -25,5 +37,48 @@
                 <span>Ver todos</span>
             </a>
         </div>
+        <h3 class="subtitle is-3">Albumes</h3>
+            <div class="columns">
+              <% @albums.each do |album|%>
+              <div class="card column is-one-quarter">
+                  <div class="card-image">
+                        <a href="/valbum/<%= album.id %>">
+                        <%if album.image.attached? %>
+                          <figure class="image is-4by3" style="background-image: url(<%= url_for(album.image) %>); background-size: cover; background-position: center center;"></figure>
+                        <% else %>
+                          <figure class="image is-4by3" style="background-image: url(<%= album.get_image() %>); background-size: cover; background-position: center center;"></figure>
+                        <%end%>
+                        </a>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-left">
+                        <figure class="image is-48x48">
+                          <img src="<%= url_for(album.artists[0].photo) %>" alt="Artista">
+                        </figure>
+                      </div>
+                      <div class="media-content">
+                        <a href="/valbum/<%= album.id %>">
+                          <p class="title is-4"><%= album.title %></p>
+                          <p class="subtitle is-6"><%= album.year %></p>
+                        </a>
+                      </div>
+                    </div>
+                
+                    <div class="content">
+                        <%= album.description %>
+                    </div>
+                  </div>
+                </div>
+              <% end%>
+            </div>
+            <div class="buttons has-addons is-right">
+                <a href="/albumes" class="button is-primary">
+                    <span class="icon">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                    <span>Ver todos</span>
+                </a>
+            </div>
     </div>
 </div>
